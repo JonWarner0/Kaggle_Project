@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     cont_mapping = {i:None for i in range(14)}
     for i in features.keys():
-        cont_mapping[i] = {v : str(rand.randint(0,1000)) for v in features[i]}
+        cont_mapping[i] = {v : str(rand.randint(-1000,1000)) for v in features[i]}
     
     with open('mappedTrainData.csv', 'w+') as f:
         for s in DATA:
@@ -51,7 +51,7 @@ if __name__ == '__main__':
                     elif s[i] in not_seen.keys():
                         s[i] = not_seen[s[i]]
                     else:
-                        n = str(rand.randint(0,1000))
+                        n = str(rand.randint(-1000,1000))
                         not_seen[s[i]] = n
                         s[i] = n
             p = ','.join(s)
