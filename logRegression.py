@@ -23,7 +23,17 @@ def MAP(s, w, v, M):
 
 
 def MLE(s, w, v, M):
-    sigmoid = 1/(1+math.exp(-1*s[1]*w@s[0]))
+    z = -1*s[1]*w@s[0]
+    q = 0
+    try:
+        q = math.exp(z)
+    except Exception as e:
+        print(e)
+        print('z: ', z)
+        print('w: ', w)
+        print('x: ', s[0])
+        exit()
+    sigmoid = 1/(1+q)
     return -1*(1-sigmoid)*M*s[1]*s[0]
 
 
@@ -37,6 +47,7 @@ def SGD(Data, g, d, var, func=MAP):
     for t in range(100):
         data = Shuffle(Data)
         for ex in data:
+            print('iter')
             w = w - Gamma(g,t,d)*func(ex,w,var,M)
     return w
 
@@ -65,7 +76,7 @@ def readTestFile(file):
 def GeneratePredictions(test, w):
     p = []
     for i in range(len(test)):
-        p.append((i, w @ test[i]))
+        p.append((i+1, w @ test[i]))
     return p
 
 

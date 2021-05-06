@@ -109,7 +109,7 @@ def GeneratePredictions(test, w):
 
 
 def OutputFile(predictions):
-    with open('PercepPredictions.csv', 'w+') as f:
+    with open('resultsPerceptron.csv', 'w+') as f:
         f.write('ID,Prediction\n')
         for p in predictions:
             f.write('{},{}\n'.format(p[0],p[1]))
@@ -136,11 +136,3 @@ if __name__ == '__main__':
 
     p = GeneratePredictions(test, w)
     OutputFile(p)
-
-    # c_test, i_test = RunTests(test, w, voted)
-    # print('test =>', function[2:], c_test, i_test, ' Error:', i_test/(c_test+i_test))
-    # if not voted:
-    #     print('Weights:', w)
-    # else:
-    #     for i in range(0,len(w), 20):
-    #         print(w[i][0], w[i][1])
