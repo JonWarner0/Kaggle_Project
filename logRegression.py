@@ -37,9 +37,6 @@ def MLE(s, w, v, M):
     return -1*(1-sigmoid)*M*s[1]*s[0]
 
 
-def MAP_Loss(s, w, v, M):
-    return math.log(1+math.exp(-s[1]*w@s[0])) * M + (w@w)/(v**2)
-
 
 def SGD(Data, g, d, var, func=MAP):
     w = np.zeros(len(Data[0][0]))
@@ -47,8 +44,8 @@ def SGD(Data, g, d, var, func=MAP):
     for t in range(100):
         data = Shuffle(Data)
         for ex in data:
-            print('iter')
-            w = w - Gamma(g,t,d)*func(ex,w,var,M)
+            g = Gamma(g,t,d)
+            w = w - g*func(ex,w,var,M)
     return w
 
 
@@ -81,8 +78,8 @@ def GeneratePredictions(test, w):
 
 
 def OutputFile(predictions):
-    with open('logRegPredictions.csv', 'w+') as f:
-        f.write('ID,Prediction')
+    with open('resultsLogRegression.csv', 'w+') as f:
+        f.write('ID,Prediction\n')
         for p in predictions:
             f.write('{},{}\n'.format(p[0],p[1]))
 
@@ -102,8 +99,8 @@ if __name__ == '__main__':
         exit()
 
     var = [0.01,0.1,0.5,1,3,5,10,100]
-    gamma = 0.0001 # MLE 0.0001
-    d = 0.25 # MLE: 0.5
+    gamma = 0.001 # MLE 0.0001
+    d = 0.000025 # MLE: 0.5
 
     model = SGD(train, gamma, d, var[1], func=func)
     p = GeneratePredictions(test, model)

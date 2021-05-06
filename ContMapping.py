@@ -56,4 +56,3 @@ if __name__ == '__main__':
                         s[i] = n
             p = ','.join(s)
             f.write('{}\n'.format(p))
-            

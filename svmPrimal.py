@@ -3,7 +3,7 @@ import numpy as np
 import random as rand
 
 #--- Constants ---
-G_INIT = 0.1
+G_INIT = 0.001
 T = 100
 C_set = [(100/873), (500/873), (700/873)]
 

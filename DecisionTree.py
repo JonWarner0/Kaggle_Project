@@ -281,7 +281,7 @@ def Use_Numeric_Median(trainFile, testFile, replace=False):
 
 
 def WrtieCSV(results):
-    with open('results.csv', 'w+') as f:
+    with open('resultsDecisionTree.csv', 'w+') as f:
         f.write("ID,Prediction\n")
         for r in results:
             f.write('{},{}\n'.format(r[0],r[1]))
