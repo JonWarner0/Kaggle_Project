@@ -1,8 +1,19 @@
-# Ensemble Algorithms
+# Kaggle Competition
 
-Run the run.sh to execute all algorithms. Decision tree based algorithms run from 1-500 in steps of 50.
+https://www.kaggle.com/c/income-level-prediction-2021s/overview
 
-Run the runBaisVariance.sh to execute the Bias + Variance decomposition for bagging and random forest. (They do have an very long run time)
+Various algorithms used in the income-level-prediction competition where training and testing data are continous and categorical values.
 
-Remaining .sh files are runable files for the respective algorithms
+Running each algorithm will follow the pattern:
+
+    python3 <algorithm> <training> <testing> <flags>
+    OUTPUT: results(algorithm).csv
+    
+Flags are dependent on the algorithm and checking the main of the .py files will describe the flags needed to effectively run the algorithm.
+
+For algorithms needing strictly continuous values, use the ContMapping.py script to map the training and testing files into a continuous space. To run use:
+    
+    python3 ContMapping.py <training> <testing>
+    OUTPUT: mappedTrainData.csv
+            mappedTestData.csv
 
